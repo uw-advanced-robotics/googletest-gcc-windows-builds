@@ -10,19 +10,18 @@ Versions listed are those used for the latest build.
 
   > GCC 11.2.0 + LLVM/Clang/LLD/LLDB 13.0.0 + MinGW-w64 9.0.0 - UCRT - release 2
 
-- mingw32-base, msys-base
+## Building Googletest
 
+Find the path at which your MinGW toolchain was extracted.
 
-
-```
-export PATH="$PATH:/C/Program Files/CMake/bin"
-```
-
------
-
-
-Install msys2
+Open a PowerShell window in this repo and run:
 
 ```
-pacman -S make
+.\build.ps1 path\to\winlibs\mingw64\bin\
+```
+
+For example, if you extracted it in your Downloads folder:
+
+```
+.\build.ps1 C:\Users\User\Downloads\winlibs-x86_64-posix-seh-gcc-11.2.0-llvm-13.0.0-mingw-w64ucrt-9.0.0-r2\mingw64\bin\
 ```
