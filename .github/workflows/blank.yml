@@ -42,4 +42,4 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Build googletest
-        run: ls ~/ && ls ~\winlibs-x86_64-posix-seh-gcc-11.2.0-llvm-13.0.0-mingw-w64ucrt-9.0.0-r2\ && ./build.ps1 ~/winlibs-x86_64-posix-seh-gcc-11.2.0-llvm-13.0.0-mingw-w64ucrt-9.0.0-r2/mingw64/bin/
+        run: ls ../ && ls ../winlibs-x86_64-posix-seh-gcc-11.2.0-llvm-13.0.0-mingw-w64ucrt-9.0.0-r2\ && ./build.ps1 ../winlibs-x86_64-posix-seh-gcc-11.2.0-llvm-13.0.0-mingw-w64ucrt-9.0.0-r2/mingw64/bin/
