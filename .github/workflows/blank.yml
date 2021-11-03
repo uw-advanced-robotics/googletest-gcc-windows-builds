@@ -23,27 +23,26 @@ jobs:
 
       - name: Download WinLibs MinGW
         uses: carlosperate/download-file-action@v1.0.3
-        # TODO: use full name
         with:
             file-url: 'https://github.com/brechtsanders/winlibs_mingw/releases/download/11.2.0-13.0.0-9.0.0-ucrt-r2/winlibs-x86_64-posix-seh-gcc-11.2.0-llvm-13.0.0-mingw-w64ucrt-9.0.0-r2.zip'
             file-name: 'mingw.zip'
             location: './'
 
       - name: Extract MinGW
-        run: Expand-Archive ./mingw.zip -DestinationPath ~/; ls ~/; tree /F $(Resolve-Path ~/)
-
-
-#       - name: Cache multiple paths
-#         uses: actions/cache@v2
-#         with:
-#           path: |
-#             ./mingw.zip
-#           key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
+        # TODO: include version in extracted path
+        run: Expand-Archive ./mingw.zip -DestinationPath ~/
 
       - uses: actions/checkout@v2
 
-      - name: test
-        run: "& $(Resolve-Path ~/mingw64/bin/g++.exe) --version"
-
       - name: Build googletest
         run: ./build.ps1 $(Resolve-Path ~/mingw64/bin/)
+
+      - name: Compress dist release
+        # TODO: parameterize script on googletest version; include pipeline ID in zip name
+        run: Compress-Archive -Path ./dist -DestinationPath googletest-win-1.10.0.zip
+
+      - name: Publish release
+        uses: softprops/action-gh-release@v1
+        # TODO: enable pipeline on MRs, only release on master
+        with:
+          files: googletest-win-1.10.0.zip
