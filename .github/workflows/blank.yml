@@ -42,7 +42,9 @@ jobs:
         run: Compress-Archive -Path ./dist -DestinationPath googletest-win-1.10.0.zip
 
       - name: Publish release
+        # TODO: use actions/create-release instead?
         uses: softprops/action-gh-release@v1
         # TODO: enable pipeline on MRs, only release on master
         with:
+          tag_name: auto-build-${{ github.run_number }}
           files: googletest-win-1.10.0.zip
