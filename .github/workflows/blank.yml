@@ -43,7 +43,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: test
-        run: & $(Resolve-Path ~/mingw64/bin/g++.exe) --version
+        run: "& $(Resolve-Path ~/mingw64/bin/g++.exe) --version"
 
       - name: Build googletest
         run: ./build.ps1 $(Resolve-Path ~/mingw64/bin/)
