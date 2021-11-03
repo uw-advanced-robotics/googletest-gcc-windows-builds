@@ -30,7 +30,7 @@ jobs:
             location: './'
 
       - name: Extract MinGW
-        run: Expand-Archive ./mingw.zip -DestinationPath ~/; tree /F $(Resolve-Path ~/mingw64/)
+        run: Expand-Archive ./mingw.zip -DestinationPath ~/; ls ~/; tree /F $(Resolve-Path ~/)
 
 
 #       - name: Cache multiple paths
