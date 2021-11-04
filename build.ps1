@@ -8,7 +8,6 @@ $GOOGLETEST_VERSION_REF = "release-" + $GOOGLETEST_VERSION_NUMBER
 $env:Path = $MingwBin + ";" + $env:Path
 
 $make = $(Join-Path "$MingwBin" "mingw32-make.exe")
-# the directory whose contents will be zipped
 $dist_parent_dir = $(Join-Path $(Resolve-Path "./") dist)
 # the directory which will appear in the unzipped contents (i.e., the singular directory within the zip)
 $dist_dir = $(Join-Path $dist_parent_dir ("googletest-g++-win-" + $GOOGLETEST_VERSION_NUMBER))
