@@ -19,6 +19,11 @@ CI Workflow.
 
   > GCC 11.2.0 + LLVM/Clang/LLD/LLDB 13.0.0 + MinGW-w64 9.0.0 - UCRT - release 2
 
+## Publishing a release on GitHub
+
+Repository maintainers can publish a new release by running the "Build Googletest Release" workflow
+against the "master" branch. Do so via the "Actions" tab.
+
 ## Building Googletest manually
 
 Find the path at which your MinGW toolchain was extracted.
