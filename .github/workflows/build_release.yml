@@ -12,7 +12,7 @@ jobs:
       PYTHON_VERSION: "=3.9.7"
       WINLIBS_FILE_NAME_STEM: "winlibs-x86_64-posix-seh-gcc-11.2.0-llvm-13.0.0-mingw-w64ucrt-9.0.0-r2"
       WINLIBS_DOWNLOAD_PATH: "https://github.com/brechtsanders/winlibs_mingw/releases/download/11.2.0-13.0.0-9.0.0-ucrt-r2/winlibs-x86_64-posix-seh-gcc-11.2.0-llvm-13.0.0-mingw-w64ucrt-9.0.0-r2.zip"
-      RELEASE_FILE_NAME: googletest-g++-win-1.10.0.zip
+      RELEASE_FILE_NAME_STEM: googletest-g++-win-1.10.0
 
     steps:
       - name: Setup Python
@@ -41,7 +41,7 @@ jobs:
 
       - name: Compress dist release
         # TODO: parameterize script on googletest version; include pipeline ID in zip name
-        run: Compress-Archive -Path ./dist/$env:RELEASE_FILE_NAME -DestinationPath $env:RELEASE_FILE_NAME
+        run: Compress-Archive -Path ./dist/$env:RELEASE_FILE_NAME_STEM -DestinationPath ${env:RELEASE_FILE_NAME_STEM}.zip
 
       - name: Publish release
         uses: softprops/action-gh-release@v1
@@ -49,4 +49,4 @@ jobs:
         # TODO: support more intelligent/configurable tag, name and release notes
         with:
           tag_name: auto-build-${{ github.run_number }}
-          files: ${{ env.RELEASE_FILE_NAME }}
+          files: ${{ env.RELEASE_FILE_NAME }}.zip
