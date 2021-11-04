@@ -11,9 +11,8 @@ jobs:
     env:
       PYTHON_VERSION: "=3.9.7"
       CMAKE_VERSION: "3.21.2"
-      WINLIBS_FILE_NAME_STEM: "winlibs-x86_64-posix-seh-gcc-11.2.0-llvm-13.0.0-mingw-w64ucrt-9.0.0-r2.zip"
-      WINLIBS_FILE_NAME: "${{env.WINLIBS_FILE_NAME_STEM}}.zip"
-      WINLIBS_DOWNLOAD_PATH: "https://github.com/brechtsanders/winlibs_mingw/releases/download/11.2.0-13.0.0-9.0.0-ucrt-r2/${{ env.WINLIBS_FILE_NAME }}"
+      WINLIBS_FILE_NAME_STEM: "winlibs-x86_64-posix-seh-gcc-11.2.0-llvm-13.0.0-mingw-w64ucrt-9.0.0-r2"
+      WINLIBS_DOWNLOAD_PATH: "https://github.com/brechtsanders/winlibs_mingw/releases/download/11.2.0-13.0.0-9.0.0-ucrt-r2/winlibs-x86_64-posix-seh-gcc-11.2.0-llvm-13.0.0-mingw-w64ucrt-9.0.0-r2.zip"
       RELEASE_FILE_NAME: googletest-g++-win-1.10.0.zip
 
     steps:
@@ -34,16 +33,16 @@ jobs:
             location: './'
 
       - name: Extract MinGW
-        run: Expand-Archive ./mingw.zip -DestinationPath ~/${{ env.WINLIBS_FILE_NAME_STEM  }}
+        run: Expand-Archive ./mingw.zip -DestinationPath ~/$env:WINLIBS_FILE_NAME_STEM
 
       - uses: actions/checkout@v2
 
       - name: Build googletest
-        run: ./build.ps1 $(Resolve-Path ~/${{ env.WINLIBS_FILE_NAME_STEM }}/mingw64/bin/)
+        run: ./build.ps1 $(Resolve-Path ~/$env:WINLIBS_FILE_NAME_STEM/mingw64/bin/)
 
       - name: Compress dist release
         # TODO: parameterize script on googletest version; include pipeline ID in zip name
-        run: Compress-Archive -Path ./dist -DestinationPath ${{ env.RELEASE_FILE_NAME }}
+        run: Compress-Archive -Path ./dist -DestinationPath $env:RELEASE_FILE_NAME
 
       - name: Publish release
         uses: softprops/action-gh-release@v1
