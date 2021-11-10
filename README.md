@@ -39,3 +39,10 @@ For example, if you extracted it in your Downloads folder:
 ```
 .\build.ps1 C:\Users\User\Downloads\winlibs-x86_64-posix-seh-gcc-11.2.0-llvm-13.0.0-mingw-w64ucrt-9.0.0-r2\mingw64\bin\
 ```
+
+## Licensing
+
+The code in this repo is licensed under the MIT license.
+
+Googletest is copyrighted and licensed by Google under the BSD 3-Clause license. You can find their
+repository [here](https://github.com/google/googletest).
