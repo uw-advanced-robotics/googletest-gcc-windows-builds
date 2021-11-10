@@ -1,6 +1,6 @@
 # Redistributable Windows googletest builds
 
-This repo provides pre-built Googletest and Googlemock libraries for Windows, compiled using g++
+This repo provides pre-built googletest and googlemock libraries for Windows, compiled using g++
 under MinGW.
 
 See the "Releases" section of this repo for the latest builds.
